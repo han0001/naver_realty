@@ -87,19 +87,32 @@ def get_apt_info(apt_code, authorization):
     return temp
 
 
-def get_apt_price(apt_code, pyeong_num, authorization):
-    down_url = 'https://new.land.naver.com/api/complexes/'+apt_code+'/prices?complexNo='+apt_code+'&tradeType=A1&year=5&priceChartChange=true&areaNo='+pyeong_num+'&areaChange=true&type=table'
+def get_apt_price(apt_code, pyeong_num, trade_type, price_order, authorization):
+    down_url = 'https://new.land.naver.com/api/articles/complex/'+apt_code
+    r = requests.get(down_url,
+         params = {
+                "complexNo": apt_code,
+                "tradeType": trade_type,
+                "year": "5",
+                "priceChartChange": "true",
+                "areaNo": pyeong_num,
+                "areaChange": "true",
+                "type": "list",
+                "sameAddressGroup": "true",
+                "order": price_order
+            },
+         headers={
+            "Authorization": authorization,
+            "Accept-Encoding": "gzip",
+            "Host": "new.land.naver.com",
+            "Referer": "https://new.land.naver.com/complexes/"+apt_code+"?ms=37.4830877,127.0579863,15&a=APT&b=A1&e=RETAIL",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
+        }
+    )
 
-    r = requests.get(down_url,headers={
-        "Authorization": authorization,
-        "Accept-Encoding": "gzip",
-        "Host": "new.land.naver.com",
-        "Referer": "https://new.land.naver.com/complexes/"+apt_code+"?ms=37.4830877,127.0579863,15&a=APT&b=A1&e=RETAIL",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-origin",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36"
-    })
     r.encoding = "utf-8-sig"
     temp_price=json.loads(r.text)
     return temp_price

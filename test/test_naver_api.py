@@ -1,5 +1,10 @@
 from unittest import TestCase
+
 from main import naver_api
+from main.constant.naver_constant import TradeType
+from main.constant.naver_constant import PriceOrder
+from main.response.naver_response import Article
+
 
 class Test(TestCase):
 
@@ -24,8 +29,14 @@ class Test(TestCase):
         apt_info = naver_api.get_apt_info("145017", authorization)
         print(apt_info)
 
-
     def test_get_apt_price(self):
         authorization = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlJFQUxFU1RBVEUiLCJpYXQiOjE3MDI4ODc3MDYsImV4cCI6MTcwMjg5ODUwNn0.beMuv8GgfQMeJ_Ot-RlnbXvCUGnLcvpJvMe1jWPQ5tk"
-        apt_price = naver_api.get_apt_price("145017", "1", authorization)
-        print(apt_price)
+        apt_price = naver_api.get_apt_price("145017",
+                                            "2",
+                                            TradeType.전세.value,
+                                            PriceOrder.낮은가격순.value,
+                                            authorization)
+
+        for article in apt_price['articleList']:
+            article_class = Article(**article)
+            print(article_class)
