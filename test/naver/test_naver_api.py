@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from main import naver_api
-from main.constant.naver_constant import TradeType
-from main.constant.naver_constant import PriceOrder
-from main.response.naver_response import Article
+from main.naver import naver_api
+from main.naver.constant.naver_constant import TradeType
+from main.naver.constant.naver_constant import PriceOrder
+from main.naver.response.naver_response import Article
 
 
 class Test(TestCase):

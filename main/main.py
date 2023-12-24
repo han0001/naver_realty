@@ -1,5 +1,4 @@
-import naver_api
-
+from main.naver import naver_api
 
 
 def sido_test():
