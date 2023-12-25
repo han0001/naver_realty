@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import date
 
 @dataclass
-class ApartTransaction:
+class ApartTransactionResponse:
     거래금액: float
     거래유형: str
     건축년도: str

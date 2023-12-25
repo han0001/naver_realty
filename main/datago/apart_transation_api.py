@@ -2,7 +2,8 @@ import requests
 import xmltodict
 
 from main.comm.key_property import CommProperty
-import xml.etree.ElementTree as ET
+from main.datago.response.apart_transaction_response import ApartTransactionResponse
+
 
 def get_price(pageNo, pageSize,  lawd_cd, deal_ymd):
 
@@ -18,5 +19,11 @@ def get_price(pageNo, pageSize,  lawd_cd, deal_ymd):
     response = requests.get(url, params)
 
     items = xmltodict.parse(response.content)["response"]["body"]["items"]["item"]
+
+    for item in items:
+        apart_transaction = ApartTransactionResponse(**item)
+        print(apart_transaction)
+
+    print(items)
 
 
