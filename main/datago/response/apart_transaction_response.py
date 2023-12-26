@@ -1,5 +1,3 @@
-from dataclasses import dataclass, field
-from datetime import date
 from pydantic import BaseModel, Field
 from typing import Optional
 
@@ -24,8 +22,8 @@ class ApartTransactionResponse(BaseModel):
     법정동읍면동코드: str
     법정동지번코드: str
     아파트: str
-    월: int
-    일: int
+    월: str
+    일: str
     일련번호: str
     전용면적: str
     중개사소재지: str

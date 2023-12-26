@@ -1,6 +1,6 @@
 from main.comm.key_property import CommProperty
+from main.datago.response.law_dong_response import LawDongResponse
 import requests
-import xmltodict
 import json
 
 
@@ -13,9 +13,9 @@ class LawDongApi:
         params = {
             'serviceKey': CommProperty().service_key,
             'page': page_no,
-            'perPage': page_size,
-            # 'returnType': "XML"
+            'perPage': page_size
         }
         response = requests.get(url, params)
-        bb = json.loads(response.text)
-        print(bb)
+        items = json.loads(response.text)["data"]
+        for item in items:
+            law_dong_response = LawDongResponse(**item)

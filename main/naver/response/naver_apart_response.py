@@ -1,0 +1,43 @@
+from pydantic import BaseModel
+
+
+class NaverApartResponse(BaseModel):
+    complexNo: str
+    complexName: str
+    cortarNo: str
+    realEstateTypeCode: str
+    realEstateTypeName: str
+    detailAddress: str
+    roadAddress: str
+    latitude: float
+    longitude: float
+    totalHouseholdCount: int
+    totalLeaseHouseholdCount: int
+    permanentLeaseHouseholdCount: int
+    nationLeaseHouseholdCount: int
+    civilLeaseHouseholdCount: int
+    publicLeaseHouseholdCount: int
+    longTermLeaseHouseholdCount: int
+    etcLeaseHouseholdCount: int
+    highFloor: int
+    lowFloor: int
+    useApproveYmd: str
+    totalDongCount: int
+    maxSupplyArea: float
+    minSupplyArea: float
+    dealCount: int
+    rentCount: int
+    leaseCount: int
+    shortTermRentCount: int
+    isBookmarked: bool
+    batlRatio: str
+    btlRatio: str
+    parkingPossibleCount: int
+    parkingCountByHousehold: float
+    constructionCompanyName: str
+    heatMethodTypeCode: str
+    heatFuelTypeCode: str
+    pyoengNames: str
+    address: str
+    roadAddressPrefix: str
+    roadZipCode: str
